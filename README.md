@@ -4,6 +4,17 @@
 
 This project was built as a hackathon submission to solve the slow, error-prone, and biased process of traditional vendor selection.
 
+---
+
+## 🎬 Prototype Demo
+
+<video width="100%" controls autoplay muted loop>
+  <source src="vid/hackathon.webm" type="video/webm">
+  Your browser does not support the video tag. Please download the video from <a href="vid/hackathon.webm">here</a>.
+</video>
+
+---
+
 ## 🚀 Key Features
 
 - **Automated RFP Parsing**: Upload supplier proposal PDFs and let the AI extract critical data points (Quotes, Lead Times, MOQ, ISO Certifications).
