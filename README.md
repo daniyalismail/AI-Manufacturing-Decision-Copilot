@@ -8,7 +8,7 @@ This project was built as a hackathon submission to solve the slow, error-prone,
 
 ## 🎬 Prototype Demo
 
-https://drive.google.com/file/d/1O-PmDc6Aa-M7nMIzrW5gPEH6IVzFNwD9/view?usp=sharing
+https://drive.google.com/file/d/1c3zJI4rnzmK3fE9pM7BDfgP5thJxVQqb/view?usp=sharing
 ---
 
 ## 🚀 Key Features
