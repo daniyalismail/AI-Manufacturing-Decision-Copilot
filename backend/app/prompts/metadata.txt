@@ -1,0 +1,7 @@
+Generate retrieval metadata.
+- Supplier
+- Document Type
+- Section
+- Keywords
+
+No summarization.

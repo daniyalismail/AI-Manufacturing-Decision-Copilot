@@ -1,0 +1,13 @@
+Generate executive summary.
+
+Sections
+- Project Summary
+- Recommended Supplier
+- Strengths
+- Risks
+- Constraints
+- Evidence
+- Conclusion
+
+Professional business language.
+No marketing language.

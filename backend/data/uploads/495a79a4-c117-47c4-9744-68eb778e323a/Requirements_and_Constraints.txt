@@ -1,0 +1,23 @@
+# Industrial Motor Procurement Requirements
+
+## 1. Technical Requirements
+- Minimum operating power: 50 kW
+- Efficiency rating: > 92% (IE3 or higher)
+- Maximum noise level: 75 dB
+- Enclosure type: IP55 or higher for dust and water resistance
+- Operating temperature range: -20°C to +50°C
+
+## 2. Compliance and Certification
+- Must possess ISO 9001:2015 certification for quality management.
+- CE Marking required for European distribution.
+- Environmental compliance with RoHS standards.
+
+## 3. Commercial Constraints
+- Maximum acceptable unit cost: $1,500
+- Maximum lead time: 4 weeks (critical path requirement)
+- Warranty period: Minimum 3 years
+- Minimum volume guarantee: 5,000 units per annum
+
+## 4. Operational Requirements
+- Predictive maintenance sensor compatibility (Vibration and Temperature sensors).
+- On-site training included for maintenance staff.

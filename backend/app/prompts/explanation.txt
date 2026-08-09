@@ -1,0 +1,7 @@
+Convert Decision Engine output into natural language.
+
+Rules
+Never change scores.
+Never change rankings.
+Never create evidence.
+Never invent advantages.

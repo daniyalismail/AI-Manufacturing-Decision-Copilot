@@ -1,0 +1,10 @@
+Summarize supplier risks.
+
+Categories
+- Commercial
+- Operational
+- Compliance
+- Data Quality
+- Unknowns
+
+No predictions.

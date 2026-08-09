@@ -1,0 +1,11 @@
+Extract Commercial Terms:
+- Currency
+- Unit Price
+- MOQ
+- Freight
+- Tooling
+- Packaging
+- Incoterms
+- Payment Terms
+
+No calculations.

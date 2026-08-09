@@ -1,0 +1,19 @@
+# Supplier Quote: Acme Motors
+
+## Company Information
+Name: Acme Motors
+Country: USA
+Website: https://acmemotors.example.com
+Certifications: ISO 9001:2015 (Valid until 2028), ISO 14001
+
+## Commercial Proposal
+Product: Industrial Motor Housing
+Material: Aluminum Alloy A380
+Machining Tolerance: +/- 0.02mm
+
+## Terms
+Unit Price: $45.00 USD
+Minimum Order Quantity: 1,000 units
+Lead Time: 18 days
+Payment Terms: Net 30
+Incoterms: FOB

@@ -1,0 +1,14 @@
+Extract every procurement requirement.
+
+Mandatory fields
+- Material
+- MOQ
+- Lead Time
+- Certifications
+- Country Restrictions
+- Payment Terms
+- Quality Requirements
+- Surface Finish
+- Tolerance
+
+Unknown values -> null

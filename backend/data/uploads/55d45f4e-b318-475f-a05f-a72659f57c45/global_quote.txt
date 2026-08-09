@@ -1,0 +1,17 @@
+# Supplier Quote: Global Tech Manufacturing
+
+## Company Profile
+Name: Global Tech
+Country: Vietnam
+Certifications: None (ISO 9001 pending renewal next year)
+
+## Specifications
+Item: Motor Housing
+Material constructed from Aluminum Alloy A380.
+Tolerance levels achieved: +/- 0.05mm.
+
+## Pricing
+Price per unit: $38.50 USD
+MOQ: 5,000 units
+Lead Time: 14 days
+Shipping: CIF

@@ -1,0 +1,4 @@
+Extract supplier information.
+
+Never calculate values.
+Extract only.

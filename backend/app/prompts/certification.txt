@@ -1,0 +1,9 @@
+Extract certifications.
+- ISO
+- RoHS
+- CE
+- REACH
+- UL
+- FDA
+
+If expiry unavailable -> null

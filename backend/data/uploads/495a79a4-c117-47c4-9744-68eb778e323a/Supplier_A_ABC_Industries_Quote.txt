@@ -1,0 +1,23 @@
+# ABC Industries - Quotation and Specification Sheet
+**Date:** August 15, 2026
+**Valid Until:** December 31, 2026
+
+## Product Specifications: HX-550 Industrial Motor
+- **Power Output:** 55 kW
+- **Efficiency:** 94% (IE4 Premium Efficiency rating)
+- **Acoustics:** Rated at 72 dB maximum output.
+- **Enclosure:** IP66 rating (total dust ingress protection and high-pressure water jets).
+- **Operating Limits:** Certified for -25°C to +60°C.
+- **IoT Ready:** Factory-installed vibration and thermal monitoring nodes compatible with standard PLC interfaces.
+
+## Commercial Terms
+- **Unit Price:** $1,450 per unit (Based on an annual volume of 5,000 units).
+- **Lead Time:** Guaranteed 3-week delivery from date of Purchase Order.
+- **Warranty:** Comprehensive 5-year parts and labor warranty.
+- **Training:** Includes 2 days of on-site technician onboarding.
+
+## Certifications
+ABC Industries operates a fully certified facility.
+- ISO 9001:2015 (Certificate ID: QMS-89912)
+- CE Marked
+- Full RoHS Compliance documented.

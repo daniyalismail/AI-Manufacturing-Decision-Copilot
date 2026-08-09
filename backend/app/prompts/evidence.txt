@@ -1,0 +1,5 @@
+Select evidence supporting a recommendation.
+
+Rules
+Only return evidence that directly supports the answer.
+Never retrieve unrelated chunks.

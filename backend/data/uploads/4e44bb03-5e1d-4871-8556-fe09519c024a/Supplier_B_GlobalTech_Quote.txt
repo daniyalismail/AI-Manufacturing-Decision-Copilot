@@ -1,0 +1,22 @@
+# Global Tech Machining - Supplier Proposal
+**Reference:** GTM-2026-0812
+**Valid Until:** October 1, 2026
+
+## GT-Pro Heavy Duty Motor Specs
+- **Power Output:** 50 kW
+- **Efficiency:** 91% (IE2 rating)
+- **Acoustics:** 78 dB under maximum load.
+- **Enclosure:** IP54 (Dust protected, splashing water resistant).
+- **Operating Limits:** -10°C to +45°C.
+- **IoT Support:** No native IoT sensors; retrofitting required for predictive maintenance.
+
+## Commercial Terms
+- **Unit Price:** $1,150 per unit (Based on minimum volume of 2,000 units).
+- **Lead Time:** 6 weeks standard delivery. 
+- **Warranty:** 1-year limited warranty.
+- **Training:** Digital manuals provided. On-site training available for an additional $2,000 flat fee.
+
+## Certifications
+- ISO 9001:2015 compliant (Certification renewal pending).
+- CE Marked.
+- RoHS compliant.

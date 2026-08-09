@@ -1,0 +1,14 @@
+# Procurement Specifications: Industrial Motor Housing
+
+## Overview
+We are looking to procure 5,000 units of Industrial Motor Housings for our upcoming production line.
+
+## Mandatory Requirements
+1. **Material**: Must be Aluminum Alloy A380.
+2. **Certification**: Supplier must hold an active ISO 9001 certification.
+3. **Lead Time**: Maximum lead time of 21 days from order placement.
+4. **Tolerance**: Machining tolerance must be within +/- 0.05mm.
+
+## Preferable (Non-Mandatory)
+1. Sustainability report available.
+2. ISO 14001 certification.

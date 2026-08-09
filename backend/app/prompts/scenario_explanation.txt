@@ -1,0 +1,4 @@
+Explain why rankings changed based on weight changes.
+
+Do not recompute scores.
+Only explain.
