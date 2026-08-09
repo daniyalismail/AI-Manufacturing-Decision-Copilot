@@ -3,9 +3,15 @@ node_modules/
 out/
 build/
 
+<<<<<<< HEAD
 .env
 .env.*
 !.env.example
+=======
+# .env
+# .env.*
+# !.env.example
+>>>>>>> 6cbe442 (feat: initialize full-stack procurement intelligence project with backend decision engine, RAG pipeline, and frontend dashboard architecture)
 
 *.pem
 *.key

@@ -1,96 +1,139 @@
 "use client";
+import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { Card } from '../../../components/ui/Card';
+import { Button } from '../../../components/ui/Button';
+import { Input, Textarea } from '../../../components/ui/Input';
+import { projectService } from '../../../services/projectService';
+import { ArrowLeft, Loader2, PlusCircle } from 'lucide-react';
 
-import { ContentCard } from "@/components/ui/ContentCard";
-import { useCreateProject } from "@/hooks/useProjects";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { ArrowRight, Loader2 } from "lucide-react";
-
-export default function CreateProjectPage() {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const { mutate: createProject, isPending, error } = useCreateProject();
+export default function NewProjectPage() {
   const router = useRouter();
+  
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [category, setCategory] = useState('Automotive & Hardware');
+  const [targetBudget, setTargetBudget] = useState('50000');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!title.trim()) return;
+    if (!name.trim() || !description.trim()) {
+      setError('Project name and description are required.');
+      return;
+    }
 
-    createProject(
-      { title, description },
-      {
-        onSuccess: (data) => {
-          // Navigate to upload screen for the newly created project
-          router.push(`/projects/${data.project_id}/upload`);
-        },
-      }
-    );
+    setError('');
+    setLoading(true);
+
+    try {
+      const created = await projectService.createProject({
+        name: name.trim(),
+        description: description.trim(),
+        category,
+        targetBudget: parseInt(targetBudget, 10) || 50000,
+      });
+
+      router.push(`/projects/${created.id}`);
+    } catch (err: any) {
+      console.error(err);
+      setError(err.message || 'Failed to create project. Please try again.');
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="flex flex-col items-center pt-12 max-w-2xl mx-auto w-full">
-      <h1 className="text-[53px] font-medium text-ink-black tracking-[-2.12px] leading-[1.15] mb-[60px] text-center">
-        Start a new analysis
-      </h1>
+    <div className="max-w-2xl mx-auto space-y-8 animate-fade-in duration-500 pt-8">
+      <div className="flex items-center gap-4">
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={() => router.push('/projects')}
+          className="rounded-full"
+          aria-label="Back to Projects"
+        >
+          <ArrowLeft className="w-5 h-5 text-ink-black" />
+        </Button>
 
-      <ContentCard className="w-full">
-        <form onSubmit={handleSubmit} className="flex flex-col gap-[var(--spacing-20)]">
-          
-          <div className="flex flex-col gap-2">
-            <label htmlFor="title" className="text-[15px] font-medium text-ink-black px-4">
-              Project Name
-            </label>
-            <input
-              id="title"
-              type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              placeholder="e.g., Motor Housing Procurement"
-              disabled={isPending}
-              required
-              className="w-full bg-cream-paper border border-hairline-mist rounded-full px-6 py-4 text-[18px] text-ink-black placeholder:text-stone-gray focus:outline-none focus:border-[var(--color-fresh-grass)] transition-colors"
-            />
-          </div>
+        <div>
+          <h1 className="text-[36px] font-bold tracking-tight text-ink-black leading-none">
+            Create Sourcing Project
+          </h1>
+          <p className="text-[14px] text-stone-gray font-medium mt-1">
+            Initialize a new procurement evaluation workspace.
+          </p>
+        </div>
+      </div>
 
-          <div className="flex flex-col gap-2">
-            <label htmlFor="description" className="text-[15px] font-medium text-ink-black px-4">
-              Description (Optional)
-            </label>
-            <textarea
-              id="description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              placeholder="What are you sourcing?"
-              disabled={isPending}
-              rows={3}
-              className="w-full bg-cream-paper border border-hairline-mist rounded-[30px] px-6 py-4 text-[18px] text-ink-black placeholder:text-stone-gray focus:outline-none focus:border-[var(--color-fresh-grass)] transition-colors resize-none"
-            />
-          </div>
+      <Card className="p-8 md:p-10 space-y-6 bg-pure-white border border-hairline-mist card-shadow">
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <Input
+            label="Project Name *"
+            placeholder="e.g. Precision CNC Machined Housing Sourcing"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
 
-          {error && (
-            <div className="bg-cream-paper border border-coral-pop text-coral-pop rounded-full px-6 py-3 text-sm">
-              Failed to create project: {error.message}
+          <Textarea
+            label="Description & Key Objectives *"
+            placeholder="Describe the procurement requirements, estimated volume, target delivery timeframe, and compliance standards..."
+            rows={4}
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            required
+          />
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="space-y-1.5">
+              <label className="block text-[14px] font-medium text-ink-black/90">
+                Industry Category
+              </label>
+              <select
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                className="w-full h-11 px-4 rounded-[12px] border border-hairline-mist bg-pure-white text-[15px] text-ink-black focus:outline-none focus:ring-2 focus:ring-ink-black/20"
+              >
+                <option value="Automotive & Hardware">Automotive & Hardware</option>
+                <option value="Renewable Energy">Renewable Energy</option>
+                <option value="Heavy Industry">Heavy Industry</option>
+                <option value="Electronics & IT">Electronics & IT</option>
+                <option value="Aerospace">Aerospace</option>
+              </select>
             </div>
-          )}
 
-          <div className="flex justify-end pt-4 mt-2">
-            <button
-              type="submit"
-              disabled={isPending || !title.trim()}
-              className="flex items-center gap-3 bg-fresh-grass hover:brightness-110 disabled:opacity-50 disabled:hover:brightness-100 text-ink-black rounded-full px-8 py-4 text-[18px] font-medium transition-all shadow-sm active:scale-95"
-            >
-              {isPending ? "Creating..." : "Create Project"}
-              {isPending ? (
-                <Loader2 size={20} strokeWidth={3} className="animate-spin" />
+            <Input
+              label="Target Budget ($ USD)"
+              type="number"
+              value={targetBudget}
+              onChange={(e) => setTargetBudget(e.target.value)}
+              placeholder="50000"
+            />
+          </div>
+
+          {error && <p className="text-[13px] text-coral-pop font-medium">{error}</p>}
+
+          <div className="pt-4 border-t border-hairline-mist flex justify-end gap-3">
+            <Button type="button" variant="ghost" onClick={() => router.push('/projects')}>
+              Cancel
+            </Button>
+            <Button type="submit" variant="action" disabled={loading} className="gap-2 shadow-md">
+              {loading ? (
+                <>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  <span>Creating Workspace...</span>
+                </>
               ) : (
-                <div className="w-8 h-8 rounded-full bg-pure-white flex items-center justify-center text-ink-black">
-                  <ArrowRight size={18} strokeWidth={3} />
-                </div>
+                <>
+                  <PlusCircle className="w-4 h-4" />
+                  <span>Create Project Workspace</span>
+                </>
               )}
-            </button>
+            </Button>
           </div>
         </form>
-      </ContentCard>
+      </Card>
     </div>
   );
 }

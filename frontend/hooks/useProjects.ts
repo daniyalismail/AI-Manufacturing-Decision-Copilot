@@ -1,18 +1,12 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { fetchAPI } from "@/lib/api-client";
-
-export interface Project {
-  project_id: string;
-  title: string;
-  description?: string;
-  created_at?: string;
-  status?: string;
-}
+import { projectService } from "@/services/projectService";
+import { Project } from "@/types";
 
 export function useProjects() {
   return useQuery({
     queryKey: ["projects"],
-    queryFn: () => fetchAPI<Project[]>("/projects"),
+    queryFn: () => projectService.getAllProjects(),
   });
 }
 

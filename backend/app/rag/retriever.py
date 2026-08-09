@@ -62,7 +62,7 @@ class RAGRetriever:
         seen_texts = set()
         
         for res in results:
-            if res.similarity > 0.4 and res.chunk.text not in seen_texts:
+            if res.similarity > 0.0 and res.chunk.text not in seen_texts:
                 reranked.append(res)
                 seen_texts.add(res.chunk.text)
                 

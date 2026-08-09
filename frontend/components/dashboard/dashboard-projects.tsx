@@ -88,7 +88,7 @@ export function DashboardProjects() {
       
       <div className="flex flex-col gap-4">
         {projects.map((project) => (
-          <Link key={project.project_id} href={`/projects/${project.project_id}`}>
+          <Link key={project.id} href={`/projects/${project.id}`}>
             <ActionCard className="flex items-center justify-between p-4 group">
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 bg-cream-paper group-hover:bg-sky-pop group-hover:text-white transition-colors rounded-full flex items-center justify-center text-ink-black">

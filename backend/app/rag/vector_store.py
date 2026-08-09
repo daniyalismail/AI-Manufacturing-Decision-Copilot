@@ -14,7 +14,7 @@ class VectorDocument(Base):
     
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=uuid.uuid4)
     text: Mapped[str] = mapped_column(nullable=False)
-    embedding: Mapped[List[float]] = mapped_column(Vector(3072)) # text-embedding-3-large dimension
+    embedding: Mapped[List[float]] = mapped_column(Vector(768)) # gemini-embedding-2 dimension is 768
     metadata_: Mapped[Dict[str, Any]] = mapped_column(JSONB, nullable=False, name="metadata")
     
 class VectorStore:

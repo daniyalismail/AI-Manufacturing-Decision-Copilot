@@ -1,117 +1,113 @@
 "use client";
+import React from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FileText, CheckCircle2, Copy, X, Sparkles, ExternalLink, ShieldAlert } from 'lucide-react';
+import { useAppStore } from '../../store/useAppStore';
+import { Badge } from '../ui/Badge';
+import { Button } from '../ui/Button';
 
-import { useEvidence } from "@/hooks/useEvidence";
-import { X, FileText, Quote, Loader2, AlertCircle } from "lucide-react";
-import { clsx } from "clsx";
-import { useEffect } from "react";
+export const EvidenceDrawer: React.FC = () => {
+  const { activeEvidence, isEvidenceDrawerOpen, closeEvidence } = useAppStore();
+  const [copied, setCopied] = React.useState(false);
 
-interface EvidenceDrawerProps {
-  projectId: string;
-  isOpen: boolean;
-  onClose: () => void;
-}
+  if (!activeEvidence) return null;
 
-export function EvidenceDrawer({ projectId, isOpen, onClose }: EvidenceDrawerProps) {
-  const { data: evidenceList, isLoading, isError } = useEvidence(projectId);
-
-  // Prevent background scrolling when open
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [isOpen]);
+  const handleCopy = () => {
+    navigator.clipboard.writeText(`[Source: ${activeEvidence.docName}, Page ${activeEvidence.pageNumber}, ${activeEvidence.sectionTitle}] "${activeEvidence.extractedText}"`);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   return (
-    <>
-      {/* Backdrop */}
-      <div 
-        className={clsx(
-          "fixed inset-0 bg-ink-black/10 backdrop-blur-sm transition-opacity z-40",
-          isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-        )}
-        onClick={onClose}
-      />
+    <AnimatePresence>
+      {isEvidenceDrawerOpen && (
+        <>
+          {/* Backdrop */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={closeEvidence}
+            className="fixed inset-0 bg-ink-black/40 backdrop-blur-xs z-50 cursor-pointer"
+          />
 
-      {/* Drawer */}
-      <div 
-        className={clsx(
-          "fixed top-0 right-0 h-full w-full max-w-md bg-cream-paper border-l border-hairline-mist shadow-2xl transition-transform duration-300 ease-in-out z-50 flex flex-col",
-          isOpen ? "translate-x-0" : "translate-x-full"
-        )}
-      >
-        <div className="flex items-center justify-between p-6 bg-pure-white border-b border-hairline-mist">
-          <h2 className="text-[30px] font-medium text-ink-black leading-none">
-            RAG Evidence
-          </h2>
-          <button 
-            onClick={onClose}
-            className="w-10 h-10 rounded-full flex items-center justify-center bg-cream-paper text-ink-black hover:bg-sandstone transition-colors"
+          {/* Drawer Panel */}
+          <motion.div
+            initial={{ y: '100%' }}
+            animate={{ y: 0 }}
+            exit={{ y: '100%' }}
+            transition={{ type: 'spring', damping: 28, stiffness: 300 }}
+            className="fixed bottom-0 left-0 right-0 max-w-[720px] mx-auto bg-pure-white rounded-t-[36px] border-t border-hairline-mist card-shadow z-50 p-6 md:p-8 space-y-6"
           >
-            <X size={20} />
-          </button>
-        </div>
-
-        <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-6">
-          <p className="text-[18px] text-stone-gray leading-[var(--leading-body-lg)]">
-            Trace the AI's logic back to the exact source documents uploaded during project setup.
-          </p>
-
-          {isLoading ? (
-            <div className="flex flex-col items-center justify-center py-20 text-stone-gray">
-              <Loader2 size={32} className="animate-spin mb-4 text-sky-pop" />
-              <p>Retrieving citations...</p>
-            </div>
-          ) : isError ? (
-            <div className="flex flex-col items-center justify-center py-20 text-coral-pop">
-              <AlertCircle size={32} className="mb-4" />
-              <p>Failed to load evidence.</p>
-            </div>
-          ) : !evidenceList || evidenceList.length === 0 ? (
-            <div className="flex flex-col items-center justify-center py-20 text-stone-gray">
-              <p>No citations found for this analysis.</p>
-            </div>
-          ) : (
-            <div className="flex flex-col gap-6">
-              {evidenceList.map((evidence, idx) => (
-                <div key={evidence.id || idx} className="bg-pure-white rounded-[50px] p-6 border border-hairline-mist">
-                  <div className="flex items-start gap-3 mb-4 pb-4 border-b border-hairline-mist">
-                    <div className="w-10 h-10 rounded-full bg-cream-paper flex items-center justify-center shrink-0">
-                      <FileText size={18} className="text-ink-black" />
-                    </div>
-                    <div className="flex flex-col">
-                      <span className="font-medium text-[18px] text-ink-black break-words">
-                        {evidence.document}
-                      </span>
-                      <div className="flex items-center gap-2 text-[15px] text-stone-gray mt-1">
-                        <span>Page {evidence.page}</span>
-                        {evidence.relevance && (
-                          <>
-                            <span>•</span>
-                            <span className="text-[var(--color-fresh-grass)] font-medium">
-                              {Math.round(evidence.relevance * 100)}% Match
-                            </span>
-                          </>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex gap-3 text-ink-black">
-                    <Quote className="text-stone-gray opacity-50 shrink-0 mt-1" size={24} />
-                    <p className="text-[18px] leading-[var(--leading-body-lg)] italic">
-                      "{evidence.text}"
-                    </p>
-                  </div>
+            {/* Header */}
+            <div className="flex justify-between items-start">
+              <div className="space-y-1">
+                <div className="flex items-center gap-2">
+                  <Badge status="PASS">{activeEvidence.evidenceType}</Badge>
+                  <span className="text-[13px] font-semibold text-sky-pop flex items-center gap-1">
+                    <Sparkles className="w-3.5 h-3.5" />
+                    Math Verified ({Math.round(activeEvidence.confidenceScore * 100)}% Confidence)
+                  </span>
                 </div>
-              ))}
+                <h3 className="text-[24px] font-bold text-ink-black tracking-tight">
+                  {activeEvidence.supplierName} - Audit Evidence
+                </h3>
+              </div>
+
+              <button
+                onClick={closeEvidence}
+                className="w-9 h-9 rounded-full bg-sandstone/50 hover:bg-sandstone flex items-center justify-center text-ink-black transition-colors cursor-pointer"
+                aria-label="Close Evidence Modal"
+              >
+                <X className="w-5 h-5" />
+              </button>
             </div>
-          )}
-        </div>
-      </div>
-    </>
+
+            {/* Document Source Metadata */}
+            <div className="bg-sandstone/30 rounded-[18px] p-4 flex flex-wrap items-center justify-between gap-3 text-[14px] text-ink-black/90 border border-sandstone">
+              <div className="flex items-center gap-2.5">
+                <FileText className="w-5 h-5 text-sky-pop shrink-0" />
+                <span className="font-semibold">{activeEvidence.docName}</span>
+              </div>
+              <div className="flex items-center gap-3 text-[13px] text-stone-gray font-medium">
+                <span>Page {activeEvidence.pageNumber}</span>
+                <span>•</span>
+                <span>{activeEvidence.sectionTitle}</span>
+              </div>
+            </div>
+
+            {/* Extracted Verbatim Quote */}
+            <div className="space-y-2">
+              <label className="text-[13px] font-bold text-stone-gray uppercase tracking-wider block">
+                Verbatim Extracted Passage
+              </label>
+              <div className="p-5 rounded-[20px] bg-cream-paper border border-hairline-mist text-[15px] font-mono leading-relaxed text-ink-black relative">
+                <span className="text-stone-gray font-bold text-lg select-none">“</span>
+                {activeEvidence.extractedText}
+                <span className="text-stone-gray font-bold text-lg select-none">”</span>
+              </div>
+            </div>
+
+            {/* Actions Footer */}
+            <div className="flex flex-wrap items-center justify-between gap-4 pt-2 border-t border-hairline-mist">
+              <div className="text-[13px] text-stone-gray flex items-center gap-1.5 font-medium">
+                <CheckCircle2 className="w-4 h-4 text-fresh-grass" />
+                <span>Extracted directly from unedited vendor PDF submission.</span>
+              </div>
+
+              <div className="flex gap-3">
+                <Button variant="default" size="sm" onClick={handleCopy} className="gap-2">
+                  <Copy className="w-4 h-4" />
+                  {copied ? 'Copied Citation!' : 'Copy Citation'}
+                </Button>
+                <Button variant="action" size="sm" onClick={closeEvidence}>
+                  Done
+                </Button>
+              </div>
+            </div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
   );
-}
+};

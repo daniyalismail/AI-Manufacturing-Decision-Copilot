@@ -4,11 +4,12 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
-import { ArrowRight, Loader2 } from "lucide-react";
+import { ArrowRight, Loader2, Eye, EyeOff } from "lucide-react";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -31,7 +32,7 @@ export default function LoginPage() {
 
     if (data.session) {
       document.cookie = `access_token=${data.session.access_token}; path=/`;
-      router.push("/projects");
+      router.push("/");
       router.refresh();
     }
   };
@@ -58,7 +59,7 @@ export default function LoginPage() {
             <input 
               id="email"
               type="email" 
-              placeholder="curious@mindmarket.com" 
+              placeholder="curious@procureiq.com" 
               className="w-full bg-pure-white border border-hairline-mist rounded-[24px] px-6 py-4 text-[16px] text-ink-black outline-none focus:border-ink-black focus:ring-4 focus:ring-ink-black/5 transition-all placeholder:text-stone-gray/60 font-medium shadow-sm"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -66,17 +67,27 @@ export default function LoginPage() {
             />
           </div>
 
-          <div className="flex flex-col gap-2.5 mb-2">
+          <div className="flex flex-col gap-2.5 mb-2 relative">
             <label className="text-[15px] font-bold text-ink-black ml-1" htmlFor="password">Password</label>
-            <input 
-              id="password"
-              type="password" 
-              placeholder="••••••••" 
-              className="w-full bg-pure-white border border-hairline-mist rounded-[24px] px-6 py-4 text-[16px] text-ink-black outline-none focus:border-ink-black focus:ring-4 focus:ring-ink-black/5 transition-all placeholder:text-stone-gray/60 font-medium shadow-sm"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
+            <div className="relative">
+              <input 
+                id="password"
+                type={showPassword ? "text" : "password"} 
+                placeholder="••••••••" 
+                className="w-full bg-pure-white border border-hairline-mist rounded-[24px] px-6 py-4 text-[16px] text-ink-black outline-none focus:border-ink-black focus:ring-4 focus:ring-ink-black/5 transition-all placeholder:text-stone-gray/60 font-medium shadow-sm pr-12"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-stone-gray hover:text-ink-black transition-colors z-10 p-2 flex items-center justify-center"
+                aria-label={showPassword ? "Hide password" : "Show password"}
+              >
+                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+              </button>
+            </div>
           </div>
 
           <button 

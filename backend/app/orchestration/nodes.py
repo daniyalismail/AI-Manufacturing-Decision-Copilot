@@ -179,6 +179,8 @@ async def rag_indexing_node(state: GraphState) -> GraphState:
                 store = VectorStore(session)
                 await store.upsert_chunks(chunks)
         except Exception as db_e:
+            import traceback
+            traceback.print_exc()
             logger.warning(f"Could not connect to DB for vector upsert, skipping in tests: {db_e}")
             
     except Exception as e:
@@ -215,6 +217,8 @@ async def evidence_retrieval_node(state: GraphState) -> GraphState:
                 evidence = await retriever.retrieve(query=query, top_k=5, filters=filters)
                 state["retrieved_evidence"] = evidence
         except Exception as db_e:
+            import traceback
+            traceback.print_exc()
             logger.warning(f"Could not connect to DB for retrieval, skipping in tests: {db_e}")
             # Mock retrieved evidence for testing
             state["retrieved_evidence"] = []

@@ -13,4 +13,19 @@ def get_supabase_client() -> Client:
         
     return create_client(url, key)
 
-supabase = get_supabase_client()
+import threading
+
+class SupabaseProxy:
+    def __init__(self):
+        self.local = threading.local()
+    
+    @property
+    def client(self) -> Client:
+        if not hasattr(self.local, "client"):
+            self.local.client = get_supabase_client()
+        return self.local.client
+        
+    def __getattr__(self, name):
+        return getattr(self.client, name)
+
+supabase = SupabaseProxy()

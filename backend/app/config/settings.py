@@ -8,6 +8,15 @@ class Settings(BaseSettings):
     # Database
     DATABASE_URL: str = "postgresql+asyncpg://postgres:postgres@localhost:5432/procurement_db"
     
+    from pydantic import field_validator
+    
+    @field_validator("DATABASE_URL", mode="before")
+    @classmethod
+    def fix_postgres_url(cls, v: str) -> str:
+        if v and v.startswith("postgresql://"):
+            return v.replace("postgresql://", "postgresql+asyncpg://", 1)
+        return v
+    
     # Authentication
     SUPABASE_URL: str = ""
     SUPABASE_KEY: str = ""
@@ -16,7 +25,7 @@ class Settings(BaseSettings):
     # AI Models
     OPENAI_API_KEY: str = ""
     OPENAI_BASE_URL: str = "https://api.openai.com/v1"
-    EMBEDDING_MODEL: str = "text-embedding-3-small"
+    EMBEDDING_MODEL: str = "gemini-embedding-2"
     CHAT_MODEL: str = "gpt-4o"
     
     # OCR

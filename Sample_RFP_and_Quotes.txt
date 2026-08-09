@@ -1,0 +1,39 @@
+# Procurement Request for Proposal (RFP)
+Project: EV Motor Housing Procurement
+Date: August 2026
+
+## 1. Core Requirements
+The buyer requires the following specifications for the procurement of EV motor housings:
+- Material Specification: The housing must be manufactured using high-grade A380 Aluminum alloy. (MANDATORY)
+- Minimum Order Quantity (MOQ): The supplier must be able to support a maximum batch size of 1,000 units per order. (MANDATORY)
+- Lead Time: The guaranteed lead time from order to delivery must not exceed 20 days. (MANDATORY)
+
+---
+
+# Supplier Quote Submission 1
+Supplier Name: TechForge Industries
+Location: Berlin, Germany
+Contact: sales@techforge.de
+
+## Quote Details
+- Proposed Material: We confirm the use of A380 Aluminum for all die-cast housings.
+- Minimum Order Quantity (MOQ): Our MOQ is exactly 1,000 units.
+- Guaranteed Lead Time: We can guarantee a lead time of 14 days for standard batches.
+- Unit Price: $42.50 per unit.
+- Certifications: We are fully ISO9001:2015 certified.
+- Additional Notes: Our supply chain is highly resilient, offering the lowest risk profile in Europe.
+
+---
+
+# Supplier Quote Submission 2
+Supplier Name: GlobalCast Solutions
+Location: Texas, USA
+Contact: bidding@globalcast.com
+
+## Quote Details
+- Proposed Material: A380 Aluminum.
+- Minimum Order Quantity (MOQ): Our required MOQ is 2,500 units to maintain pricing efficiency.
+- Guaranteed Lead Time: We offer a standard lead time of 25 days.
+- Unit Price: $35.00 per unit.
+- Certifications: ISO9001:2015 active.
+- Additional Notes: While we offer the lowest price on the market, please note our strict MOQ and longer lead times.

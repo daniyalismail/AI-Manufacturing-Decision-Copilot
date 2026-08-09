@@ -39,12 +39,6 @@
   --text-display-lg--line-height: 0.95;
   --text-display-lg--letter-spacing: -8.64px;
 
-  /* Spacing */
-  --spacing-4: 4px;
-  --spacing-20: 20px;
-  --spacing-60: 60px;
-  --spacing-136: 136px;
-  --spacing-216: 216px;
 
   /* Border Radius */
   --radius-lg: 10px;
@@ -54,7 +48,7 @@
   --radius-full-2: 63.75px;
   
   --radius-nav: 50px;
-  --radius-cards: 50px;
+  --radius-cards: 28px;
   --radius-small: 10px;
   --radius-buttons: 50px;
   --radius-illustration-containers: 63.75px;
@@ -105,5 +99,23 @@
   @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
+  }
+
+  /* Custom Utilities & Hide Scrollbar */
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Custom Glass & Border Utilities */
+  .card-shadow {
+    box-shadow: 0 4px 20px -2px rgba(44, 46, 42, 0.05);
+  }
+
+  .pill-shadow {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
   }
 }

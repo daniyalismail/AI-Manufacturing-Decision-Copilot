@@ -1,0 +1,6 @@
+{
+  "name": "Procurement Intelligence Copilot",
+  "description": "AI decision-support platform for enterprise procurement, supplier evaluation, and requirement reasoning.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

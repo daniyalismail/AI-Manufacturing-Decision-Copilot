@@ -16,12 +16,7 @@ def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(securit
     Verify the incoming JWT token against Supabase Auth.
     """
     token = credentials.credentials
-    if not token or token == "invalid" or token == "mock-jwt-token-123":
-        # Keep mock token support for now so frontend testing doesn't instantly break 
-        # before the user completes frontend auth setup. 
-        # But try to hit supabase if it's a real token.
-        if token == "mock-jwt-token-123":
-            return CurrentUser(user_id="00000000-0000-0000-0000-000000000000")
+    if not token or token == "invalid":
         raise AuthError("Invalid or missing token")
         
     try:
@@ -30,4 +25,8 @@ def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(securit
             raise AuthError("Invalid Supabase token")
         return CurrentUser(user_id=user_response.user.id)
     except Exception as e:
-        raise AuthError(f"Token validation failed: {str(e)}")
+        error_msg = str(e)
+        if "disconnected" in error_msg.lower() or "timeout" in error_msg.lower():
+            from app.api.exceptions import APIException
+            raise APIException(status_code=503, code="SERVICE_UNAVAILABLE", message="Supabase connection failed. Please try again.")
+        raise AuthError(f"Token validation failed: {error_msg}")

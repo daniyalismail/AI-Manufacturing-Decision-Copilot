@@ -15,7 +15,7 @@ class DocumentClassification(BaseModel):
 
 class RequirementItem(BaseModel):
     name: str = Field(description="Name of the requirement (e.g., Material, MOQ)")
-    value: str = Field(description="Value of the requirement")
+    value: Optional[str] = Field(None, description="Value of the requirement")
     mandatory: bool = Field(description="Whether this requirement is mandatory")
     confidence: float = Field(description="Confidence score")
     evidence: Optional[EvidenceRef] = None
@@ -72,6 +72,7 @@ class RecommendationSummary(BaseModel):
 class ChatResponse(BaseModel):
     answer: str
     sources: List[EvidenceRef] = Field(default_factory=list)
+    suggested_questions: List[str] = Field(default_factory=list, description="3-4 contextual follow-up questions the user can ask.")
 
 class ScenarioChange(BaseModel):
     change: str

@@ -9,10 +9,11 @@ class SemanticChunker:
     Chunks a parsed document using tiktoken to enforce token limits.
     Target: 400-700 tokens, Overlap: 100 tokens.
     """
-    def __init__(self, target_tokens: int = 500, overlap_tokens: int = 100, model: str = "text-embedding-3-large"):
+    def __init__(self, target_tokens: int = 500, overlap_tokens: int = 100, model: str = "gemini-embedding-2"):
         self.target_tokens = target_tokens
         self.overlap_tokens = overlap_tokens
-        self.encoding = tiktoken.encoding_for_model(model)
+        # Use standard OpenAI encoding since tiktoken doesn't know 'gemini-embedding-2'
+        self.encoding = tiktoken.get_encoding("cl100k_base")
 
     def _split_text(self, text: str) -> List[str]:
         tokens = self.encoding.encode(text)

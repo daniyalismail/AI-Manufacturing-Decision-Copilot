@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@theme {
+  --color-fresh-grass: #8ed462;
+  --color-cream-paper: #f5f1e4;
+  --color-ink-black: #2c2e2a;
+  --color-pure-white: #ffffff;
+  --color-sandstone: #e0dbce;
+  --color-stone-gray: #80827f;
+  --color-hairline-mist: #d5d5d4;
+  --color-pure-ink: #000000;
+  --color-sky-pop: #2ba0ff;
+  --color-coral-pop: #ff705d;
+  --color-sunshine-pop: #f5e211;
+
+  --font-inter: 'Inter', system-ui, -apple-system, sans-serif;
+
+  --radius-nav: 50px;
+  --radius-cards: 28px;
+  --radius-buttons: 50px;
+  --radius-small: 10px;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-cream-paper, #f5f1e4);
+    color: var(--color-ink-black, #2c2e2a);
+    font-family: var(--font-inter, 'Inter', system-ui, sans-serif);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom Utilities & Hide Scrollbar */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Custom Glass & Border Utilities */
+.card-shadow {
+  box-shadow: 0 4px 20px -2px rgba(44, 46, 42, 0.05);
+}
+
+.pill-shadow {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+}
