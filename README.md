@@ -54,6 +54,7 @@ Since this project is not deployed, please follow these step-by-step instruction
 4. Create a `.env` file inside the `backend` folder and add the following exactly as provided (these are read-only/hackathon keys, so it's safe to use them):
    ```env
    OPENAI_API_KEY="AQ.Ab8RN6JN1TRpaT-CQ2kdGkupquRaLF9WN2k5gbKr-es-2XVBUA"
+   <!-- this api key will expire in 1 hour so input your api key i am using gemini api key so kindly use that because enviornment is made according to that  -->
    OPENAI_BASE_URL="https://generativelanguage.googleapis.com/v1beta/openai/"
    CHAT_MODEL="gemini-3.5-flash-lite"
    SUPABASE_URL="https://vwerlsnmvarlkqbroizt.supabase.co"
