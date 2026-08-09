@@ -8,14 +8,7 @@ This project was built as a hackathon submission to solve the slow, error-prone,
 
 ## 🎬 Prototype Demo
 
-https://github.com/user-attachments/assets/hackathon.mp4
-
-<video width="100%" controls autoplay muted loop>
-  <source src="vid/hackathon.mp4" type="video/mp4">
-  <source src="vid/hackathon.webm" type="video/webm">
-  Your browser does not support the video tag. Please <a href="vid/hackathon.mp4">download the video here</a> to watch the demo.
-</video>
-
+https://drive.google.com/file/d/1O-PmDc6Aa-M7nMIzrW5gPEH6IVzFNwD9/view?usp=sharing
 ---
 
 ## 🚀 Key Features
